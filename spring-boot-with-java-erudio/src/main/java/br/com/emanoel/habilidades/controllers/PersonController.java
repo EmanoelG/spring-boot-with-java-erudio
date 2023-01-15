@@ -10,7 +10,7 @@ import br.com.emanoel.habilidades.models.Person;
 import br.com.emanoel.habilidades.services.PersonServices;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 
 	 @Autowired
