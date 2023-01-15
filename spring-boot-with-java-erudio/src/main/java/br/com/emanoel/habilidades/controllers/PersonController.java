@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,13 +27,30 @@ public class PersonController {
 	    public Person findById(@PathVariable("id") String id) throws Exception {
 	        return service.findById(id);
 	    }
-	    
-	    @RequestMapping(
-	    		value="/all",
+	       
+	    @RequestMapping(value="/all",
 	    		method =RequestMethod.GET,
 	            produces = MediaType.APPLICATION_JSON_VALUE)
 	    public List<Person> findAll() throws Exception {
 	        return service.findAll();
+	    }
+	 
+	    @RequestMapping(
+	    		value="/{i}",
+	    		method =RequestMethod.POST,
+	    		consumes = MediaType.APPLICATION_JSON_VALUE,
+	            produces = MediaType.APPLICATION_JSON_VALUE)
+	    public Person findCreate(@RequestBody Person perso) throws Exception {
+	        return service.create(perso);
+	    }
+	    
+	    @RequestMapping(
+	    		value="/{id}",
+	    		method =RequestMethod.DELETE,
+	            produces = MediaType.APPLICATION_JSON_VALUE)
+	    public void findDelete(@PathVariable("id") String id) throws Exception {
+	         service.delete(id);
+	          
 	    }
 	    
 	   

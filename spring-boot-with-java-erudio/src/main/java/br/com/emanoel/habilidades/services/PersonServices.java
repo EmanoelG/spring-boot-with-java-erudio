@@ -14,8 +14,7 @@ public class PersonServices {
 	private final AtomicLong counter = new AtomicLong();
 	private Logger logger = Logger.getLogger(PersonServices.class.getName());
 	
-	public Person findById(String id) {
-		
+	public Person findById(String id) {	
 		logger.info("Find one person !");		
 		Person person = new Person();
 		person.setId(counter.incrementAndGet());
@@ -27,6 +26,7 @@ public class PersonServices {
 	}
 	
 	public List<Person> findAll() {
+		logger.info("FindAll one person !");		
 		List<Person> persons = new ArrayList<Person>();
 		for(int i=0; i<8; i++) {
 			persons.add( mockPerson(i));
@@ -42,6 +42,20 @@ public class PersonServices {
 			person.setAddress("Clevelândia -PR");
 			person.setGender("Male"); 
 			return person;
+	 }
+	 
+	 public Person create(Person person) {
+		 logger.info("findCreate  person !");	
+		 Person personS = new Person();
+		 personS = person;
+		 return personS;
+	 }
+	 
+	 public void delete(String ud) {
+		 logger.info("Delete  person !");	
+//		 Person personS = new Person();
+//		 personS = person;
+//		 return personS;
 	 }
 
 }
