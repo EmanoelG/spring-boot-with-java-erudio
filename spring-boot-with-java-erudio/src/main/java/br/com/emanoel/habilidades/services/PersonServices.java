@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.emanoel.habilidades.PersonRepositories.PersonRespository;
 import br.com.emanoel.habilidades.exceptions.ResourceNotFoundException;
-import br.com.emanoel.habilidades.models.Person;
+import br.com.emanoel.habilidades.models.PersonVO;
 
 @Service
 public class PersonServices {
@@ -18,36 +18,36 @@ public class PersonServices {
 	@Autowired
 	PersonRespository repository;
 
-	public Person findById(Long id) {
+	public PersonVO findById(Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this Id !"));
 	}
 
-	public List<Person> findAll() {
-		logger.info("FindAll one person !");
+	public List<PersonVO> findAll() {
+		logger.info("FindAll one PersonVO !");
 
 		return repository.findAll();
 	}
 
-	public Person create(Person person) {
-		logger.info("Create one person !");
+	public PersonVO create(PersonVO PersonVO) {
+		logger.info("Create one PersonVO !");
 
-		return repository.save(person);
+		return repository.save(PersonVO);
 	}
 
-	public Person update(Person person) {
-		logger.info("update  person !");
+	public PersonVO update(PersonVO PersonVO) {
+		logger.info("update  PersonVO !");
 
-		var entity = repository.findById(person.getId())
+		var entity = repository.findById(PersonVO.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID !"));
-		entity.setLastName(person.getLastName());
-		entity.setAddress(person.getAddress());
-		entity.setGender(person.getGender());
+		entity.setLastName(PersonVO.getLastName());
+		entity.setAddress(PersonVO.getAddress());
+		entity.setGender(PersonVO.getGender());
 		return entity;
 	}
 
 	public void delete(Long id) {
-		logger.info("Delete  person !");
+		logger.info("Delete  PersonVO !");
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID !"));
 		repository.delete(entity);
